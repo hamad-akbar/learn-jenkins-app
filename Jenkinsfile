@@ -11,7 +11,7 @@ pipeline {
             }
             steps {
                 sh '''
-                ls -la /build
+                ls -la /build | grep 'index.html'
                 node --version
                 npm --version
                 npm ci
