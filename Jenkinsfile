@@ -15,8 +15,15 @@ pipeline {
                 node --version
                 npm --version
                 npm ci
-                npm test
+                npm run build
                 ls -la
+                '''
+            }
+        }
+        stage{
+            steps{
+                sh '''
+                npm test
                 '''
             }
         }
