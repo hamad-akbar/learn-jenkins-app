@@ -29,12 +29,16 @@ pipeline {
             }
             steps {
                 sh '''
-                
-                npm ci
+                test -f build/index.html
                 npm test
                 
                 '''
             }
+        }
+    }
+    post{
+        always{
+            junit ''
         }
     }
 }
