@@ -11,19 +11,28 @@ pipeline {
             }
             steps {
                 sh '''
-                ls -la build | grep 'index.html'
+                
                 node --version
                 npm --version
                 npm ci
                 npm run build
-                ls -la
+                ls -la build | grep 'index.html'
                 '''
             }
         }
         stage('test'){
-            steps{
+            agent{
+                docker{
+                    image 'node:18-alpine'
+                    reuseNode true
+                }
+            }
+            steps {
                 sh '''
+                
+                npm ci
                 npm test
+                
                 '''
             }
         }
