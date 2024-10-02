@@ -11,11 +11,11 @@ pipeline {
             }
             steps {
                 sh '''
-                ls -la
+                ls -la /build
                 node --version
                 npm --version
                 npm ci
-                npm run build
+                npm test
                 ls -la
                 '''
             }
