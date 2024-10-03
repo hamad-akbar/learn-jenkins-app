@@ -3,7 +3,8 @@ pipeline {
 
     stages {
         stage('parallel stages'){
-                    stage('Build') {
+        parallel{
+            stage('Build') {
             agent{
                 docker{
                     image 'node:18-alpine'
@@ -36,6 +37,9 @@ pipeline {
                 '''
             }
         }
+
+            }
+
 
 
         }
