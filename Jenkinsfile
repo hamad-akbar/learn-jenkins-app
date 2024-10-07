@@ -2,8 +2,7 @@ pipeline {
     agent any
 
     stages {
-        stage('parallel stages'){
-        parallel{
+        
             stage('Build') {
             agent{
                 docker{
@@ -22,8 +21,10 @@ pipeline {
                 '''
             }
         }
-        
-        stage('test'){
+        stage(running paralel)
+        {
+            parallel{
+                stage('test'){
             agent{
                 docker{
                     image 'node:18-alpine'
@@ -38,15 +39,26 @@ pipeline {
                 '''
             }
         }
+        stage('test1'){
+            
+            steps {
+                sh '''
+                echo "helow from test1"              
+                '''
+            }
+        }
 
             }
-
-
-
         }
         
-
         
+            
+        
+        
+
     }
-    
+
+
+
 }
+        
